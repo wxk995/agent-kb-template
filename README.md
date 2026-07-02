@@ -1,6 +1,42 @@
-# Agent KB Template
+<p align="center">
+  <strong>Agent KB Template</strong>
+</p>
 
-一个从真实多 Agent 协作中长出来的知识库框架。不是AI生成的模板，是我和三个 Agent 磨合了几个月之后的"工作记忆系统"。
+<h1 align="center">代理知识库模板</h1>
+
+<p align="center">
+  一个给 Codex、Claude、Hermes 使用的 Agent 工作记忆模板。
+  <br />
+  让新对话先读正确上下文，复用旧方案，按同一套边界协作。
+</p>
+
+<p align="center">
+  <img alt="docs" src="https://img.shields.io/badge/docs-Markdown-0969da" />
+  <img alt="agents" src="https://img.shields.io/badge/agents-Codex%20%7C%20Claude%20%7C%20Hermes-1a7f37" />
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-6e7781" />
+</p>
+
+---
+
+## 这是什么
+
+这是一个从真实多 Agent 协作中整理出来的知识库模板。它不是工具源码仓库，也不是业务项目仓库，而是给 Agent 读取和维护的工作记忆层。
+
+它解决的问题很具体：
+
+- Agent 开新对话后不知道当前项目状态。
+- 旧方案散在聊天记录里，遇到同类问题又要重查。
+- 规则写得太长，Agent 启动时容易跳过重点。
+- 测试记录、交接记录、错误复盘没有稳定位置。
+- 多个项目、多种 Agent、多个工具之间缺少统一边界。
+
+## 核心特性
+
+- **热入口启动**：每次新对话只读取少量关键文件，先拿到项目状态和禁止事项。
+- **项目分层管理**：用 `projects/<project>/` 保存每个项目的状态、交接、验证和错误记录。
+- **经验复用**：遇到报错、方案设计、关键配置或“上次怎么解决”时，先查经验索引。
+- **收口沉淀**：工作结束后把稳定结论写回长期知识库，不让成果只停留在聊天记录里。
+- **边界清晰**：知识库、业务仓库、工具仓库分离，避免规则和业务代码互相污染。
 
 ## 这不是又一个"最佳实践"文档
 
