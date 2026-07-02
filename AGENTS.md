@@ -1,37 +1,42 @@
 # AGENTS.md
 
-本仓库是项目共用的 Agent 工作记忆仓库。任何 Agent 在本仓库内工作时，必须先读取本文件。
+> 以下规则由用户制定和维护。任何修改须经本人确认。
 
-## 新对话启动规则
+本仓库是项目共用的 Agent 工作记忆仓库。任何 Agent 在本仓库内工作时，先读本文件，再按热入口继续。
 
-每次新对话，Agent 默认读取以下热入口：
+## 启动链路
 
-1. 根目录 `AGENTS.md`（本文件）
+默认热入口顺序：
+1. `AGENTS.md`
 2. `workspace-index.md`
-3. `projects/<当前项目>/quick-start.md`
-4. `projects/<当前项目>/00-current-state.md`
+3. `global/agent-rules/<agent>.md`
+4. `projects/<project>/quick-start.md`
+5. `projects/<project>/00-current-state.md`
 
-开始工作前，用一句话确认：已读什么、当前任务、当前状态、下一步、禁止事项。
+开工前用一句话确认：已读文件、任务、状态、下一步、禁止事项、不能重复犯的错误。
 
-## 记忆更新规则
+## 必读触发
 
-- 重要事实写入 Markdown，不留在聊天记录。
-- 当前状态优先写 `00-current-state.md`。
-- 长期规则沉淀到 `standards/`。
-- 决策写 `decisions/`，错误写 `mistakes/`，验证证据写 `verification/`。
-- 临时产物（截图、日志、临时脚本）不入库。
+- 涉及总结、说明、方案、对外分享、知识库规则、判断取舍或"我的风格"时，先读 `global/profile.md`；画像只作偏好参考，不伪装用户。
+- 遇到报错、bug、异常、技术方案、受保护文件、关键配置，或用户提到"之前/又出现/上次"时，先查 `global/experience-index.md` → 对应经验文件，再分析。
+- 回答上述问题时先写回执：`旧方案检索：已查 global/experience-index.md，命中：... / 未命中，自行分析如下。`
 
-写入分层和升级条件见 `standards/governance.md`。
+## 协作边界
 
-## 收口规则
+默认角色：由用户指定。同一批文件同一时间只允许一个 Agent 写入。
 
-工作结束或阶段性完成时，必须：
+多 Agent 文件化协作不是默认流程；仅在用户明确启用后使用。
 
-1. 更新 `00-current-state.md`
-2. 重要结论写入对应目录（`decisions/`、`mistakes/`、`verification/`）
-3. 确认临时产物已清理
+## 硬规则
 
-## 防重复犯错
+- 写知识库前列出文件清单和原因，等用户确认。
+- 未经用户明确要求，不提交代码、推送或创建 PR。
+- 受保护文件以项目 `project-rules.md` 为准。
+- 完成声明前运行验证并说明结果；测试完成后删除临时内容。
+- 外部工具不进默认流程；`archive/` 只作历史追溯。
 
-- 新任务先查 `mistakes/` 和 `decisions/` 是否有相关记录。
-- 做完成声明前必须运行验证命令并报告结果。
+## 知识库维护
+
+分层、升级和瘦身见 `standards/governance.md`；重要事实写 Markdown，不留聊天。热状态优先写 `projects/<project>/00-current-state.md`，长期规则沉淀到 `standards/`。
+
+工作结束时执行收口流程（更新热入口、重要结论落盘、清理临时内容）。

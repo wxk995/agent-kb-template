@@ -8,8 +8,9 @@
 
 新对话、压缩恢复、普通续作时默认读取：
 
-- `AGENTS.md`：Agent 行为规则
+- `AGENTS.md`：Agent 入口规则 + 硬约束
 - `workspace-index.md`：工作区与项目索引
+- `global/agent-rules/<agent>.md`：当前 Agent 行为规则
 - `projects/<project>/quick-start.md`：项目快速入口
 - `projects/<project>/00-current-state.md`：当前热状态
 
@@ -23,7 +24,8 @@
 - `projects/<project>/verification/`：验证记录
 - `projects/<project>/handoffs/`：交接记录
 - `projects/<project>/decisions/`：决策记录
-- `projects/<project>/mistakes/`：错误库（仅在遇到复发错误或规则冲突时读取）
+- `global/experience-index.md`：经验路由表
+- `projects/<project>/mistakes/`：错误库（仅在遇到复发错误、受保护文件、规则冲突时读取）
 
 规则：温层保存规范、验证、交接、决策、错误；新对话不默认全读。
 
@@ -41,7 +43,7 @@
 
 1. **新经验先写项目级**：错误、决策、验证方法先沉淀到 `projects/<project>/mistakes/`、`verification/`、`standards/`。
 2. **跨项目复用后再升级全局**：同一个经验在 2 个以上项目中出现，或明显具有跨项目适用性时，再升级到全局 `standards/` 或 `mistakes/`。
-3. **经验索引只做路由**：全局经验索引文件只写关键词和文件路径，不写长篇细节。
+3. **`global/experience-index.md` 只做路由**：不写长篇细节，只写关键词和指向哪个文件的路径。
 4. **不能把一次性过程直接升级为全局规则**：必须经过项目级验证、确认可复用后，才进入全局。
 
 ## 知识库保留范围
@@ -56,3 +58,15 @@
 2. 验证证据写入 `projects/<project>/verification/`。
 3. 不把大段临时输出或测试产物当长期验证证据保存。
 4. 如果无法验证，要明确说明原因和剩余风险。
+
+## 瘦身规则
+
+触发条件：
+- **热层文件超过 50 行**：触发瘦身检查，判断哪些内容可以降级到温层或冷层；不机械迁移。
+- **温层文件超过 6 个月未更新**且无其他文件引用：归档到 `archive/`。
+- **同一经验在多个文件中重复**：合并保留最完整的版本，其余归档；删除前列出清单确认。
+
+执行时机：
+- 每次收口时顺带检查热层文件行数。
+- 用户说"知识库太乱了/太臃肿了"时立即全量检查。
+- 归档操作必须列出清单，确认后再执行。
