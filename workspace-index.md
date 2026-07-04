@@ -12,9 +12,22 @@
 
 ## 全局资料
 
+- `workflows/`：操作流程入口，告诉人和 Agent 遇到不同任务时该读什么、改什么、什么时候收口。
 - `standards/`：跨项目长期规范。
 - `global/experience-index.md`：经验路由表（按关键词路由到经验文件）。
 - `global/profile.md`：用户画像（Agent 写作/判断前必读）。
+
+## 常用操作入口
+
+| 场景 | 读取 |
+|------|------|
+| 第一次使用本模板 | `workflows/01-new-reader.md` |
+| 新增项目记忆 | `workflows/02-new-project.md` |
+| 新开 Agent 对话 | `workflows/03-start-agent-session.md` |
+| 更新知识库内容 | `workflows/04-update-knowledge.md` |
+| 工作结束收口 | `workflows/05-closeout.md` |
+| 知识库瘦身 | `workflows/06-prune-knowledge.md` |
+| Agent 完成后自检 | `workflows/07-agent-review.md` |
 
 ## 已登记项目
 
@@ -24,6 +37,4 @@
 
 ## 添加新项目
 
-1. 在 `projects/` 下创建 `<项目名>/` 目录。
-2. 从 `templates/` 复制模板文件并按需填写。
-3. 在本文件中登记新项目。
+新增项目时不要临时猜目录，按 `workflows/02-new-project.md` 执行。

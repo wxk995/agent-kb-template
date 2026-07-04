@@ -37,7 +37,26 @@
 **关键词**：`00-current-state`、`quick-start`、`archive`、`热入口`、`瘦身`、`governance`
 
 优先读取：
+- `workflows/04-update-knowledge.md` — 更新知识库内容
+- `workflows/05-closeout.md` — 工作结束收口
+- `workflows/06-prune-knowledge.md` — 文件过多、重复或过期时瘦身
 - `standards/governance.md` — 三层治理和瘦身规则
+
+## 新对话和项目初始化
+
+**关键词**：`新对话`、`启动`、`新项目`、`初始化`、`fork`、`上手`
+
+优先读取：
+- `workflows/01-new-reader.md` — 第一次使用本模板
+- `workflows/02-new-project.md` — 新增项目记忆
+- `workflows/03-start-agent-session.md` — 新开 Agent 对话
+
+## Agent 自检
+
+**关键词**：`复查`、`review`、`自检`、`完成前检查`、`越界`
+
+优先读取：
+- `workflows/07-agent-review.md` — Agent 完成后自检
 
 ---
 

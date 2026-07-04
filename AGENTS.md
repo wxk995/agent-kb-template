@@ -15,6 +15,11 @@
 
 开工前用一句话确认：已读文件、任务、状态、下一步、禁止事项、不能重复犯的错误。
 
+## 工作流路由
+
+遇到操作类任务时先读 `workflows/README.md`，不要自己猜流程。
+常用入口：新读者 `01-new-reader`；新项目 `02-new-project`；新对话 `03-start-agent-session`；更新知识 `04-update-knowledge`；收口 `05-closeout`；瘦身 `06-prune-knowledge`；自检 `07-agent-review`。
+
 ## 必读触发
 
 - 涉及总结、说明、方案、对外分享、知识库规则、判断取舍或"我的风格"时，先读 `global/profile.md`；画像只作偏好参考，不伪装用户。
@@ -23,9 +28,7 @@
 
 ## 协作边界
 
-默认角色：由用户指定。同一批文件同一时间只允许一个 Agent 写入。
-
-多 Agent 文件化协作不是默认流程；仅在用户明确启用后使用。
+默认角色由用户指定；同一批文件同一时间只允许一个 Agent 写入。多 Agent 文件化协作不是默认流程，仅在用户明确启用后使用。
 
 ## 硬规则
 
@@ -38,5 +41,3 @@
 ## 知识库维护
 
 分层、升级和瘦身见 `standards/governance.md`；重要事实写 Markdown，不留聊天。热状态优先写 `projects/<project>/00-current-state.md`，长期规则沉淀到 `standards/`。
-
-工作结束时执行收口流程（更新热入口、重要结论落盘、清理临时内容）。

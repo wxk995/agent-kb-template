@@ -16,11 +16,13 @@
 - 先看 `git status --short`
 - 确认当前项目边界和禁止事项
 - 检查 `mistakes/` 是否有和当前任务相关的历史错误
+- 不确定流程时，先回到根目录 `workflows/` 选择对应操作流程
 
 ## 按需读取
 
 根据任务类型，按需读取：
 
+- 操作流程：`workflows/`
 - 知识库治理规则：`standards/governance.md`
 - 验证记录：`projects/<PROJECT_NAME>/verification/`
 - 决策记录：`projects/<PROJECT_NAME>/decisions/`

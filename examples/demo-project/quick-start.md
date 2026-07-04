@@ -16,11 +16,13 @@
 - 先看 `git status --short`
 - 不修改 `package.json` 和 `tsconfig.json` 中的依赖版本，除非任务明确要求。
 - 新增复杂逻辑时，补充必要注释，避免解释显而易见的代码。
+- 不确定当前任务流程时，先回到根目录 `workflows/` 选择对应操作流程。
 
 ## 按需读取
 
 根据任务类型，按需读取温层文档：
 
+- 操作流程：`workflows/`
 - 知识库治理规则：`standards/governance.md`
 - 验证记录：`projects/task-tracker/verification/`
 - 决策记录：`projects/task-tracker/decisions/`

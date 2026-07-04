@@ -33,6 +33,7 @@
 ## 核心特性
 
 - **热入口启动**：每次新对话只读取少量关键文件，先拿到项目状态和禁止事项。
+- **任务工作流**：不知道该看什么、改什么、什么时候收口时，先进入 `workflows/` 里的对应流程。
 - **项目分层管理**：用 `projects/<project>/` 保存每个项目的状态、交接、验证和错误记录。
 - **经验复用**：遇到报错、方案设计、关键配置或“上次怎么解决”时，先查经验索引。
 - **收口沉淀**：工作结束后把稳定结论写回长期知识库，不让成果只停留在聊天记录里。
@@ -104,13 +105,21 @@ git clone https://github.com/wxk995/agent-kb-template.git my-project-kb
 cd my-project-kb
 ```
 
-### 2. 填写 AUTHOR.md 和 profile.md
+### 2. 先读新读者工作流
+
+```text
+workflows/01-new-reader.md
+```
+
+这个文件会告诉你第一轮应该读什么，不需要从整个仓库里猜入口。
+
+### 3. 填写 AUTHOR.md 和 profile.md
 
 这两个文件决定了 Agent 产出的"人味"：
 - `AUTHOR.md`：告诉别人这是谁的仓库、为什么建
 - `global/profile.md`：告诉 Agent 你是什么风格、讨厌什么、什么必须自己拍板
 
-### 3. 创建项目记忆
+### 4. 创建项目记忆
 
 ```bash
 mkdir -p projects/my-app/{verification,mistakes,decisions,handoffs}
@@ -120,9 +129,35 @@ cp templates/00-current-state.md projects/my-app/00-current-state.md
 
 编辑 `00-current-state.md` 填入真实状态。在 `workspace-index.md` 登记项目。
 
-### 4. 配置 Agent 全局入口
+更完整的步骤见：
+
+```text
+workflows/02-new-project.md
+```
+
+### 5. 配置 Agent 入口
 
 在每个 Agent 的全局配置里写入知识库路径和"先查后做"规则。详见 `global/agent-rules/agent.md` 模板。
+
+新开对话时，让 Agent 先执行：
+
+```text
+workflows/03-start-agent-session.md
+```
+
+## 按任务进入 workflow
+
+| 你要做什么 | 先读 |
+|------|------|
+| 第一次使用本模板 | `workflows/01-new-reader.md` |
+| 给新项目建立记忆 | `workflows/02-new-project.md` |
+| 新开 Agent 对话 | `workflows/03-start-agent-session.md` |
+| 更新、补充、纠正文档 | `workflows/04-update-knowledge.md` |
+| 工作结束后沉淀结论 | `workflows/05-closeout.md` |
+| 文档太多、重复、过期 | `workflows/06-prune-knowledge.md` |
+| Agent 写完后复查 | `workflows/07-agent-review.md` |
+
+这个目录是模板的操作层。Markdown 负责保存知识，workflow 负责告诉人和 Agent 该怎么用这些知识。
 
 ## 目录结构
 
@@ -133,6 +168,16 @@ cp templates/00-current-state.md projects/my-app/00-current-state.md
 ├── AGENTS.md                   # Agent 入口规则 + 硬约束
 ├── workspace-index.md          # 工作区与项目索引
 ├── LICENSE                     # MIT
+│
+├── workflows/                  # 操作流程：读什么、改什么、什么时候收口
+│   ├── README.md
+│   ├── 01-new-reader.md
+│   ├── 02-new-project.md
+│   ├── 03-start-agent-session.md
+│   ├── 04-update-knowledge.md
+│   ├── 05-closeout.md
+│   ├── 06-prune-knowledge.md
+│   └── 07-agent-review.md
 │
 ├── global/
 │   ├── profile.md              # 用户画像（Agent 写作/判断前必读）
@@ -171,6 +216,7 @@ cp templates/00-current-state.md projects/my-app/00-current-state.md
 - 不存 API 密钥、密码等敏感信息
 - 不把聊天记录当事实源
 - 不保留临时截图、日志、一次性测试输出
+- 不强依赖某个平台的 skill 系统；`workflows/` 是平台无关操作流程
 - 不加自动定时系统——手动触发够用，自动化越管越乱
 
 ## 许可
