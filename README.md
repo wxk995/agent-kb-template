@@ -20,7 +20,7 @@
 
 ## 这是什么
 
-这是一个面向 AI Agent 的知识库模板。它不是业务项目仓库，也不是工具源码仓库，而是夹在“聊天记录”和“项目代码”之间的一层工作记忆。
+这是一个面向 AI Agent 的知识库模板。它不是业务项目仓库，也不是工具源码仓库，而是夹在"聊天记录"和"项目代码"之间的一层工作记忆。
 
 它要解决的问题很具体：
 
@@ -30,7 +30,11 @@
 - 验证记录、错误复盘、交接信息没有固定位置。
 - 文档越来越多之后，人和 Agent 都不知道该先看什么。
 
-这个模板的核心不是“多写文档”，而是把文档分层，并给出可执行的操作流程。
+这个模板的核心不是"多写文档"，而是把文档分层，并给出可执行的操作流程。
+
+### 项目来源
+
+本模板从真实私人 Agent 工作知识库中抽离、脱敏和简化而来。原知识库来源于实际使用，公开模板仍在持续迭代。模板保留了原知识库实际使用中形成的目录结构、分层规则和操作流程，并去掉私人内容和特定业务信息。
 
 ## 适合谁
 
@@ -47,7 +51,7 @@
 - 只做一次性聊天，不需要长期记忆。
 - 不愿意维护任何项目状态或验证记录。
 
-## 3 分钟快速开始
+## 快速开始
 
 ### 1. 复制模板
 
@@ -71,17 +75,30 @@ workflows/01-new-reader.md
 
 ### 4. 创建第一个项目记忆
 
+**PowerShell：**
+```powershell
+$project = "my-app"
+New-Item -ItemType Directory -Force -Path "projects/$project/verification"
+New-Item -ItemType Directory -Force -Path "projects/$project/mistakes"
+New-Item -ItemType Directory -Force -Path "projects/$project/decisions"
+New-Item -ItemType Directory -Force -Path "projects/$project/handoffs"
+Copy-Item templates/quick-start.md "projects/$project/quick-start.md"
+Copy-Item templates/00-current-state.md "projects/$project/00-current-state.md"
+```
+
+**Bash：**
 ```bash
-mkdir -p projects/my-app/{verification,mistakes,decisions,handoffs}
-cp templates/quick-start.md projects/my-app/quick-start.md
-cp templates/00-current-state.md projects/my-app/00-current-state.md
+PROJECT="my-app"
+mkdir -p "projects/$PROJECT"/{verification,mistakes,decisions,handoffs}
+cp templates/quick-start.md "projects/$PROJECT/quick-start.md"
+cp templates/00-current-state.md "projects/$PROJECT/00-current-state.md"
 ```
 
 然后编辑：
 
 - `projects/my-app/quick-start.md`：项目路径、技术栈、常用命令、受保护文件。
 - `projects/my-app/00-current-state.md`：当前状态、当前阻塞、下一步。
-- `workspace-index.md`：登记这个项目。
+- `workspace-index.md`：登记这个项目（替换或删除占位行）。
 
 完整步骤见 `workflows/02-new-project.md`。
 
@@ -92,7 +109,28 @@ cp templates/00-current-state.md projects/my-app/00-current-state.md
 项目名：my-app。
 ```
 
-Agent 应该先读取 5 个热入口，再开始执行任务。
+Agent 应该先读取 5 个热入口，再开始执行任务：
+
+1. `AGENTS.md`
+2. `workspace-index.md`
+3. `global/agent-rules/agent.md`
+4. `projects/<project>/quick-start.md`
+5. `projects/<project>/00-current-state.md`
+
+## Agent 兼容说明
+
+不同 Agent 平台的启动入口略有不同，但最终都指向同一套热入口：
+
+- **Codex**：直接使用 `AGENTS.md` 作为自动加载入口。
+- **Claude Code**：使用仓库根目录的 `CLAUDE.md` 作为适配入口，内部路由到 `AGENTS.md` 和 `global/agent-rules/agent.md`。
+- **其他 Agent**：在新对话中使用以下启动提示词：
+
+```text
+请先读取 AGENTS.md 和 workflows/03-start-agent-session.md，按热入口顺序加载上下文。
+项目名：<你的项目名>。
+```
+
+所有平台最终读取的规则文件均为同一份 `global/agent-rules/agent.md`，不按 Agent 平台拆分多份规则。
 
 ## 按任务进入 workflow
 
@@ -124,7 +162,7 @@ Agent 应该先读取 5 个热入口，再开始执行任务。
 
 ### 2. 先查后做
 
-遇到报错、方案设计、关键配置、受保护文件，或用户提到“上次/之前/又出现”，Agent 必须先查：
+遇到报错、方案设计、关键配置、受保护文件，或用户提到"上次/之前/又出现"，Agent 必须先查：
 
 ```text
 global/experience-index.md
@@ -145,7 +183,7 @@ global/experience-index.md
 
 ### 4. 收口沉淀
 
-工作结束时不要只在聊天里说“完成了”。稳定结论应该写回对应位置：
+工作结束时不要只在聊天里说"完成了"。稳定结论应该写回对应位置：
 
 - 当前状态：`projects/<project>/00-current-state.md`
 - 验证记录：`projects/<project>/verification/`
@@ -173,6 +211,7 @@ global/experience-index.md
 ├── README.md
 ├── AUTHOR.md                   # 给人看的作者和维护说明
 ├── AGENTS.md                   # Agent 入口规则和硬约束
+├── CLAUDE.md                   # Claude Code 适配入口
 ├── workspace-index.md          # 工作区与项目索引
 ├── LICENSE
 │
@@ -207,6 +246,7 @@ global/experience-index.md
 │   └── demo-project/           # 示例项目记忆
 │
 └── projects/
+    ├── README.md
     └── <project>/
         ├── quick-start.md
         ├── 00-current-state.md
@@ -225,6 +265,10 @@ global/experience-index.md
 - 不长期保留临时截图、日志、一次性测试输出。
 - 不强依赖某个平台的 skill 系统；`workflows/` 是平台无关操作流程。
 - 不默认引入自动定时系统；先把手动流程跑顺。
+
+## 参与贡献
+
+欢迎提交规则纠错、模板改善、跨平台命令补充和文档可读性改进。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 许可证
 

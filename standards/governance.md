@@ -10,12 +10,13 @@
 
 - `AGENTS.md`：Agent 入口规则 + 硬约束
 - `workspace-index.md`：工作区与项目索引
-- `workflows/`：按任务选择操作流程
-- `global/agent-rules/<agent>.md`：当前 Agent 行为规则
+- `global/agent-rules/agent.md`：Agent 通用行为规则
 - `projects/<project>/quick-start.md`：项目快速入口
 - `projects/<project>/00-current-state.md`：当前热状态
 
 规则：热层文件只写当前状态和下一步，不堆砌历史。
+
+`workflows/` 不在默认热层读取列表中。workflows 是按任务读取的操作入口，仅在遇到对应操作任务（新项目、更新知识、收口、瘦身、自检等）时按需读取。
 
 ### 温层（按需读取）
 
@@ -42,8 +43,8 @@
 
 ## 经验升级规则
 
-1. **新经验先写项目级**：错误、决策、验证方法先沉淀到 `projects/<project>/mistakes/`、`verification/`、`standards/`。
-2. **跨项目复用后再升级全局**：同一个经验在 2 个以上项目中出现，或明显具有跨项目适用性时，再升级到全局 `standards/` 或 `mistakes/`。
+1. **新经验先写项目级**：错误、决策、验证方法先沉淀到 `projects/<project>/mistakes/`、`verification/`、`decisions/`、`handoffs/` 等项目级目录。
+2. **跨项目复用后再升级全局**：同一个经验在 2 个以上项目中出现，或明显具有跨项目适用性时，再升级到全局 `standards/`，由 `global/experience-index.md` 路由。
 3. **`global/experience-index.md` 只做路由**：不写长篇细节，只写关键词和指向哪个文件的路径。
 4. **不能把一次性过程直接升级为全局规则**：必须经过项目级验证、确认可复用后，才进入全局。
 

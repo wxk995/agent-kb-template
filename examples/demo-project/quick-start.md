@@ -1,33 +1,44 @@
 # task-tracker 快速开始
 
-新对话入口。
+> **这是虚构教学示例。** 所有项目名、路径、技术栈、数据和记录均为教学目的编造。
+> 正式使用时，将内部路径 `examples/demo-project/` 替换为 `projects/<你的项目名>/`。
 
-## 默认读取
+| 项目信息 | |
+|---------|---|
+| 路径 | `~/code/task-tracker`（业务代码仓库，非本知识库路径） |
+| 用途 | 待办事项管理全栈应用（标签、优先级、到期提醒） |
+| 技术栈 | Node.js + Express + SQLite / React + TypeScript / JWT + bcrypt |
+| 启动 | `cd server && npm run dev` / `cd client && npm start` |
+| 构建 | `cd client && npm run build` |
+| 测试 | `npm test`（Vitest）/ `npm run test:e2e`（Playwright） |
+| 验证 | `npm test` + 手动验证关键流程（登录→创建→编辑→删除） |
+| 受保护文件 | `package.json`、`tsconfig.json`、`.github/workflows/`、`migrations/`（仅追加） |
+| 项目规则 | API 先契约后实现；schema 变更入 decisions/；React Context 不引入额外状态库 |
 
-每次新对话，Agent 优先读取以下热入口：
+## 热入口（每次新对话默认读取）
 
-1. 根目录 `AGENTS.md`
+1. `AGENTS.md`
 2. `workspace-index.md`
-3. `projects/task-tracker/quick-start.md`（本文件）
-4. `projects/task-tracker/00-current-state.md`
+3. `global/agent-rules/agent.md`
+4. `examples/demo-project/quick-start.md`（本示例文件）
+5. `examples/demo-project/00-current-state.md`
 
 ## 开工检查
 
-- 先看 `git status --short`
-- 不修改 `package.json` 和 `tsconfig.json` 中的依赖版本，除非任务明确要求。
-- 新增复杂逻辑时，补充必要注释，避免解释显而易见的代码。
-- 不确定当前任务流程时，先回到根目录 `workflows/` 选择对应操作流程。
+- `git status --short` → 确认并保留现有工作树状态
+- 不修改受保护文件，除非任务明确要求
+- 流程不确定 → 根目录 `workflows/` 选择对应操作流程
 
-## 按需读取
+## 按需路由
 
-根据任务类型，按需读取温层文档：
+| 场景 | 读取 |
+|------|------|
+| 操作流程 | `workflows/` |
+| 治理规则 | `standards/governance.md` |
+| 经验检索 | `global/experience-index.md` |
+| 验证记录 | `examples/demo-project/verification/` |
+| 决策记录 | `examples/demo-project/decisions/` |
+| 交接记录 | `examples/demo-project/handoffs/` |
+| 报错/复发/受保护文件 | `examples/demo-project/mistakes/`（按需，不全量读） |
 
-- 操作流程：`workflows/`
-- 知识库治理规则：`standards/governance.md`
-- 验证记录：`projects/task-tracker/verification/`
-- 决策记录：`projects/task-tracker/decisions/`
-- 错误记录：`projects/task-tracker/mistakes/`
-
-## 冷文档
-
-历史归档、外部参考资料默认不进入新对话读取链路。
+冷文档默认不读。扩展文件 `active-work.md`、`project-index.md` 为可选，不列入默认最小结构。

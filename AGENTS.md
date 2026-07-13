@@ -9,7 +9,7 @@
 默认热入口顺序：
 1. `AGENTS.md`
 2. `workspace-index.md`
-3. `global/agent-rules/<agent>.md`
+3. `global/agent-rules/agent.md`
 4. `projects/<project>/quick-start.md`
 5. `projects/<project>/00-current-state.md`
 

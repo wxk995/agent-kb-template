@@ -1,8 +1,11 @@
 # task-tracker 项目索引
 
+> **可选扩展**：本文件不列入默认最小结构。多项目场景下可用于快速定位项目信息。
+> 正式使用时放入 `projects/<project>/`。
+
 - 项目名称：task-tracker
-- 项目路径：`<WORKSPACE_ROOT>/projects/task-tracker`
-- 项目类型：React + Node.js 全栈项目，待办事项管理应用
+- 项目路径：`<WORKSPACE_ROOT>/examples/demo-project`
+- 项目类型：React + Node.js 全栈项目，待办事项管理应用（虚构教学示例）
 
 ## 项目规则
 
@@ -19,7 +22,7 @@
 ## 目录
 
 ```
-projects/task-tracker/
+examples/demo-project/
 ├── project-index.md       # 本文件
 ├── quick-start.md         # 快速开始
 ├── 00-current-state.md    # 热状态

@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+
+# Editor
+*.swp
+*.tmp
+
+# Logs
+*.log
+
+# Environment (allow .env.example)
+.env
+.env.*
+
+!.env.example
+
